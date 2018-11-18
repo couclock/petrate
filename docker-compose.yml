@@ -3,5 +3,9 @@ services:
   postgresql:
     image: postgres:11-alpine
     container_name: petrate_postgresql
+    environment:
+       - POSTGRES_USER=petrate
+       - POSTGRES_PASSWORD=petrate
+       - POSTGRES_DB=petrate
     ports:
       - "5432:5432"

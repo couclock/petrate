@@ -16,16 +16,12 @@
                 <span class="md-title">{{ pets[0].name }}</span>
                 <span class="md-subhead">{{ pets[0].description }}</span>
               </md-card-header>
-
+              <md-card-actions>
+                <md-button @click="vote(pets[0])">Vote</md-button>
+              </md-card-actions>
             </md-card-area>
           </md-card-media-cover>
         </md-card>
-      </div>
-
-      <div class="md-layout-item md-size-5 md-alignment-center-center">
-        <div class="md-layout-item">
-          <h2>vs</h2>
-        </div>
       </div>
 
       <div class="md-layout-item pet-image">
@@ -40,6 +36,9 @@
                 <span class="md-title">{{ pets[1].name }}</span>
                 <span class="md-subhead">{{ pets[1].description }}</span>
               </md-card-header>
+              <md-card-actions>
+                <md-button @click="vote(pets[1])">Vote</md-button>
+              </md-card-actions>
 
             </md-card-area>
           </md-card-media-cover>
@@ -54,35 +53,60 @@
       </h2>
     </div>
 
+    <md-dialog :md-active.sync="showAlert">
+      <md-dialog-title>Thanks for your vote !</md-dialog-title>
+
+      <md-dialog-actions>
+        <md-button class="md-primary"
+                   @click="close()">Close</md-button>
+        <md-button class="md-primary"
+                   @click="reload()">Another vote ?</md-button>
+      </md-dialog-actions>
+    </md-dialog>
+
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
-import { HTTP } from '@/http-constants';
+import { HTTP, baseURL } from '@/http-constants';
 
 export default {
   name: 'home',
   data() {
     return {
       pets: [],
-      error: false
+      error: false,
+      showAlert: false
     };
   },
   methods: {
     getImageUrl: function(petId) {
-      return 'http://localhost:8080/pets/' + petId + '/image';
+      return baseURL + '/pets/' + petId + '/image';
+    },
+    vote: function() {
+      this.showAlert = true;
+    },
+    close: function() {
+      this.showAlert = false;
+    },
+    reload: function() {
+      this.showAlert = false;
+      this.initPets();
+    },
+    initPets: function() {
+      HTTP.get('/pets/rnd2')
+        .then(response => {
+          this.pets = response.data;
+        })
+        .catch(response => {
+          console.error('ERROR : ', response);
+          this.error = true;
+        });
     }
   },
   created() {
-    HTTP.get('/pets/rnd2')
-      .then(response => {
-        this.pets = response.data;
-      })
-      .catch(response => {
-        console.error('ERROR : ', response);
-        this.error = true;
-      });
+    this.initPets();
   }
 };
 </script>
