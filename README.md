@@ -1,6 +1,6 @@
 # PetRate
 
-# First local run
+## First local run
 
 - Clone project 
 
@@ -12,13 +12,13 @@ git clone git@github.com:couclock/petrate.git
 cd petrate
 docker-compose up
 ```
-- Start SpringBoot backend
+- Start SpringBoot backend (ensure no other process run on 8080 port)
 ```
 mvn spring-boot:run
 ```
-- Start VueJS frontend
+- Start VueJS frontend (ensure no other process run on 8081 port)
 ```
 cd front
 npm install && npm run serve
 ```
-
+- Navigate to http://localhost:8081
