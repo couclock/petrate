@@ -45,7 +45,7 @@ public class PetController {
 
 		int maxIdx = petRepository.findMaxIdx();
 
-		// Nasty bug
+		// Nasty bug to comment
 		// maxIdx++;
 
 		int randomNum1 = ThreadLocalRandom.current().nextInt(0, maxIdx + 1);
