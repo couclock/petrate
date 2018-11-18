@@ -23,10 +23,13 @@ npm install && npm run serve
 ```
 - Navigate to http://localhost:8081 and try that small project
 
-## Local run using Docker
+## Local run using Docker
 
 - What is it ? Cf https://fr.slideshare.net/NicolasMuller/docker-yajug
 - Install Docker
+
+### With dockerfile and docker-compose
+
 - Switch your project on dockerfile branch
 ```
 git checkout dockerfile
