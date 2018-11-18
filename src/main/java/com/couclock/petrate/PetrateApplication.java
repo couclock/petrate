@@ -33,22 +33,38 @@ public class PetrateApplication {
 		int petIdx = 0;
 
 		if (!allPets.contains("Noisette")) {
-			Pet myPet = new Pet(petIdx, "Noisette", "Jeune chatte isabelle", getImage("./static/zoa.jpg"));
+			Pet myPet = new Pet(petIdx, "Noisette", "Young \"isabelle\" cat", getImage("./static/zoa.jpg"));
 			petRepository.save(myPet);
 		}
 		petIdx++;
 		if (!allPets.contains("Potty")) {
-			Pet myPet = new Pet(petIdx, "Potty", "Previously \"Microlax\"", getImage("./static/poisson_rouge.jpg"));
+			Pet myPet = new Pet(petIdx, "Potty", "Goldfish, formerly \"Microlax\"",
+					getImage("./static/poisson_rouge.jpg"));
 			petRepository.save(myPet);
 		}
 		petIdx++;
 		if (!allPets.contains("Coquillette")) {
-			Pet myPet = new Pet(petIdx, "Coquillette", "Tortue Hermann Corse", getImage("./static/tortue.jpg"));
+			Pet myPet = new Pet(petIdx, "Coquillette", "Hermann Corsica turtle", getImage("./static/tortue.jpg"));
 			petRepository.save(myPet);
 		}
 		petIdx++;
 		if (!allPets.contains("Grisette")) {
 			Pet myPet = new Pet(petIdx, "Grisette", "Gray scared hen", getImage("./static/poule-grise.jpg"));
+			petRepository.save(myPet);
+		}
+		petIdx++;
+		if (!allPets.contains("Coquine")) {
+			Pet myPet = new Pet(petIdx, "Coquine", "Red hen", getImage("./static/poule-rousse.jpg"));
+			petRepository.save(myPet);
+		}
+		petIdx++;
+		if (!allPets.contains("Bubulle 1")) {
+			Pet myPet = new Pet(petIdx, "Bubulle 1", "First roach", getImage("./static/gardon_1.jpg"));
+			petRepository.save(myPet);
+		}
+		petIdx++;
+		if (!allPets.contains("Bubulle 2")) {
+			Pet myPet = new Pet(petIdx, "Bubulle 2", "Second roach", getImage("./static/gardon_2.jpg"));
 			petRepository.save(myPet);
 		}
 		petIdx++;
