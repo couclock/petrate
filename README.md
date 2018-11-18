@@ -21,4 +21,4 @@ mvn spring-boot:run
 cd front
 npm install && npm run serve
 ```
-- Navigate to http://localhost:8081
+- Navigate to http://localhost:8081 and try that small project
