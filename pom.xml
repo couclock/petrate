@@ -60,7 +60,6 @@
           <include>**/application*.yml</include>
           <include>**/application*.yaml</include>
           <include>**/application*.properties</include>
-          <include>**/static/*</include>
         </includes>
       </resource>
       <resource>
