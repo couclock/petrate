@@ -2,7 +2,7 @@ version: '3'
 services:
   postgresql:
     image: postgres:11-alpine
-    container_name: couclock/petrate_postgresql
+    container_name: petrate_postgresql
     environment:
        - POSTGRES_USER=petrate
        - POSTGRES_PASSWORD=petrate
@@ -11,10 +11,16 @@ services:
       - "5432:5432"
       
   front:
-    container_name: couclock/petrate_front
+    image: couclock/petrate_front
+    container_name: petrate_front
     build: ./front
-
+    depends_on: 
+      - back
+   
   back:
-    container_name: couclock/petrate_back
+    image: couclock/petrate_back
+    container_name: petrate_back
     build: .
+    depends_on: 
+      - postgresql
     
