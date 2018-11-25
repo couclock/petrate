@@ -40,5 +40,20 @@ docker-compose build back
 ```
 docker-compose up
 ```
-- Navigate to http://localhost:82 and try that small project
+- Navigate to http://localhost and try that small project
+
+### With jib (https://github.com/GoogleContainerTools/jib)
+
+- Image creation with traditionnal docker tool is slow and painfull => Jib 
+- Build docker images 
+```
+docker-compose build front
+mvn jib:dockerBuild
+```
+Each code update is now fast, all dependencies are not download anymore.
+- Start docker images
+```
+docker-compose up
+```
+- Navigate to http://localhost and try that small project
 
