@@ -16,6 +16,8 @@ services:
     build: ./front
     ports:
       - "82:80"
+    depends_on: 
+      - back
    
   back:
     image: couclock/petrate_back
