@@ -14,13 +14,15 @@ services:
     image: couclock/petrate_front
     container_name: petrate_front
     build: ./front
-    depends_on: 
-      - back
+    ports:
+      - "82:80"
    
   back:
     image: couclock/petrate_back
     container_name: petrate_back
     build: .
+    ports:
+      - "8080:8080"
     depends_on: 
       - postgresql
     

@@ -9,4 +9,4 @@ COPY --from=BUILD /usr/src/app/target /opt/target
 WORKDIR /opt/target
 ENV _JAVA_OPTIONS '-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=5005'
 
-CMD ["java", "-jar", "app.war"]
+CMD ["java", "-Dspring.profiles.active=docker", "-jar", "petrate-0.0.1-SNAPSHOT.jar"]

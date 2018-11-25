@@ -4,7 +4,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Lob;
 
 @Entity
 public class Pet {
@@ -18,18 +17,17 @@ public class Pet {
 	public String name;
 	public String description;
 
-	@Lob
-	public byte[] image;
+	public String imagePath;
 
 	public Pet() {
 	}
 
-	public Pet(int idx, String name, String description, byte[] image) {
+	public Pet(int idx, String name, String description, String imagePath) {
 		super();
 		this.idx = idx;
 		this.name = name;
 		this.description = description;
-		this.image = image;
+		this.imagePath = imagePath;
 	}
 
 }

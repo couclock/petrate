@@ -1,12 +1,15 @@
 package com.couclock.petrate.rest;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.ThreadLocalRandom;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.io.ByteArrayResource;
+import org.springframework.core.io.ClassPathResource;
+import org.springframework.core.io.InputStreamResource;
 import org.springframework.core.io.Resource;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -27,17 +30,17 @@ public class PetController {
 	private PetRepository petRepository;
 
 	@GetMapping("/{petId}/image")
-	public ResponseEntity<Resource> getImage(@PathVariable(value = "petId") long petId) {
+	public ResponseEntity<Resource> getImage(@PathVariable(value = "petId") long petId) throws IOException {
 
 		Optional<Pet> result = petRepository.findById(petId);
 		if (!result.isPresent()) {
 			return null;
 		}
 
-		ByteArrayResource resource = new ByteArrayResource(result.get().image);
+		InputStream is = new ClassPathResource(result.get().imagePath).getInputStream();
+		InputStreamResource resource = new InputStreamResource(is);
 
-		return ResponseEntity.ok().contentLength(result.get().image.length)
-				.contentType(MediaType.parseMediaType("application/octet-stream")).body(resource);
+		return ResponseEntity.ok().contentType(MediaType.IMAGE_JPEG).body(resource);
 	}
 
 	@GetMapping("/rnd2")
