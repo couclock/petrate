@@ -41,5 +41,5 @@ docker-compose build back
 ```
 docker-compose up
 ```
-- Navigate to http://localhost:82 and try that small project
+- Navigate to http://localhost and try that small project
 
