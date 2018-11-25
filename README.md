@@ -10,7 +10,7 @@ git clone git@github.com:couclock/petrate.git
 - Start PostgreSQL database (ensure no other database is running)
 ```
 cd petrate
-docker-compose up
+docker-compose start postgresql
 ```
 - Start SpringBoot backend (ensure no other process run on 8080 port)
 ```
