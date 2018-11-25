@@ -30,7 +30,15 @@ npm install && npm run serve
 
 ### With dockerfile and docker-compose
 
-- Switch your project on dockerfile branch
+- Explain why we want to use Docker to ease deployment
+- Build docker images
 ```
-git checkout dockerfile
+docker-compose build front
+docker-compose build back
 ```
+- Start docker images
+```
+docker-compose up
+```
+- Navigate to http://localhost:82 and try that small project
+
