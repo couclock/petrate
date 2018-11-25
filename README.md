@@ -31,6 +31,7 @@ npm install && npm run serve
 ### With dockerfile and docker-compose
 
 - Explain why we want to use Docker to ease deployment
+- Explain why we use multi-stage Dockerfile : build on agnostic env
 - Build docker images (and wait a moment)
 ```
 docker-compose build front
