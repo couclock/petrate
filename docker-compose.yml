@@ -4,27 +4,26 @@ services:
     image: postgres:11-alpine
     container_name: petrate_postgresql
     environment:
-       - POSTGRES_USER=petrate
-       - POSTGRES_PASSWORD=petrate
-       - POSTGRES_DB=petrate
+      - POSTGRES_USER=petrate
+      - POSTGRES_PASSWORD=petrate
+      - POSTGRES_DB=petrate
     ports:
-      - "5432:5432"
-      
+      - '5432:5432'
+
   front:
     image: couclock/petrate_front
-    container_name: petrate_front
+    container_name: petrate_front:v1
     build: ./front
     ports:
-      - "80:80"
-    depends_on: 
+      - '80:80'
+    depends_on:
       - back
-   
+
   back:
     image: couclock/petrate_back
-    container_name: petrate_back
+    container_name: petrate_back:v1
     build: .
     ports:
-      - "8080:8080"
-    depends_on: 
+      - '8080:8080'
+    depends_on:
       - postgresql
-    
