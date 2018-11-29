@@ -82,7 +82,7 @@ export default {
   },
   methods: {
     getImageUrl: function(petId) {
-      return baseURL + '/pets/' + petId + '/image';
+      return baseURL + 'pets/' + petId + '/image';
     },
     vote: function() {
       this.showAlert = true;

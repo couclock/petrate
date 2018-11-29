@@ -1,0 +1,36 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: front
+spec:
+  ports:
+    - port: 80
+  selector:
+    app: front
+  type: NodePort
+---
+apiVersion: apps/v1 # for versions before 1.9.0 use apps/v1beta2
+kind: Deployment
+metadata:
+  name: front
+spec:
+  selector:
+    matchLabels:
+      app: front
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: front
+    spec:
+      containers:
+        - image: couclock/petrate_front:v1
+          name: front
+          env:
+            - name: TARGET_ENV
+              value: prod
+          ports:
+          ports:
+            - containerPort: 80
+              name: front
