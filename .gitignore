@@ -9,6 +9,7 @@ target
 terraform/.terraform/
 terraform/terraform.tfstate
 terraform/terraform.tfstate.backup
+terraform/config_map_aws_auth.yaml
 
 tests/e2e/videos/
 tests/e2e/screenshots/
