@@ -1,22 +1,10 @@
-# Minikube
-
-- Lancer minikube
-
-```
-minikube start
-```
-
-- Config de l'env
-
-```
-eval $(minikube docker-env)
-```
-
 - Pour voir le dashboard
 
 ```
-kubectl proxy & minikube dashboard &
+kubectl proxy &
 ```
+
+Pointer sur http://localhost:8001
 
 - Pour créer le deployment et service de la base
 

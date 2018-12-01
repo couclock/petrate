@@ -7,7 +7,7 @@ spec:
     - port: 80
   selector:
     app: front
-  type: NodePort
+  type: LoadBalancer
 ---
 apiVersion: apps/v1 # for versions before 1.9.0 use apps/v1beta2
 kind: Deployment
@@ -25,7 +25,7 @@ spec:
         app: front
     spec:
       containers:
-        - image: couclock/petrate_front:v1
+        - image: 082895264261.dkr.ecr.eu-west-1.amazonaws.com/terraform-eks-demo-front:v1
           name: front
           env:
             - name: TARGET_ENV
