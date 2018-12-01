@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <h1>Which of my pets do you prefer ?</h1>
+    <h1>Which of my pets do you really prefer ?</h1>
 
     <div class="md-layout md-gutter md-alignment-top-center"
          v-if="pets.length > 0">
@@ -69,10 +69,10 @@
 
 <script>
 // @ is an alias to /src
-import { HTTP, baseURL } from '@/http-constants';
+import { HTTP, baseURL } from "@/http-constants";
 
 export default {
-  name: 'home',
+  name: "home",
   data() {
     return {
       pets: [],
@@ -82,7 +82,7 @@ export default {
   },
   methods: {
     getImageUrl: function(petId) {
-      return baseURL + 'pets/' + petId + '/image';
+      return baseURL + "pets/" + petId + "/image";
     },
     vote: function() {
       this.showAlert = true;
@@ -95,12 +95,12 @@ export default {
       this.initPets();
     },
     initPets: function() {
-      HTTP.get('/pets/rnd2')
+      HTTP.get("/pets/rnd2")
         .then(response => {
           this.pets = response.data;
         })
         .catch(response => {
-          console.error('ERROR : ', response);
+          console.error("ERROR : ", response);
           this.error = true;
         });
     }

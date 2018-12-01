@@ -8,7 +8,7 @@ resource "kubernetes_deployment" "front" {
   }
 
   spec {
-    replicas = 1
+    replicas = 2
 
     selector {
       match_labels {
@@ -25,7 +25,7 @@ resource "kubernetes_deployment" "front" {
 
       spec {
         container {
-          image = "082895264261.dkr.ecr.eu-west-1.amazonaws.com/terraform-eks-demo-front:v1"
+          image = "082895264261.dkr.ecr.eu-west-1.amazonaws.com/terraform-eks-demo-front:v2"
           name  = "front"
 
           port = {
