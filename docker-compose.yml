@@ -11,7 +11,7 @@ services:
       - '5432:5432'
 
   front:
-    image: couclock/petrate_front:v1
+    image: couclock/petrate_front:v2
     container_name: petrate_front
     build: ./front
     ports:
@@ -20,7 +20,7 @@ services:
       - back
 
   back:
-    image: couclock/petrate_back:v1
+    image: couclock/petrate_back:v2
     container_name: petrate_back
     build: .
     ports:

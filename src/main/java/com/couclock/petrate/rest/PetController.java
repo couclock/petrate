@@ -70,8 +70,8 @@ public class PetController {
 		Pet pet2 = petRepository.findByIdx(randomNum2);
 
 		List<PetDTO> pets = Arrays.asList( //
-				new PetDTO(pet1.id, pet1.idx, pet1.name, pet1.description), //
-				new PetDTO(pet2.id, pet2.idx, pet2.name, pet2.description));
+				new PetDTO(pet1.id, pet1.idx, "Name : " + pet1.name, pet1.description), //
+				new PetDTO(pet2.id, pet2.idx, "Name : " + pet2.name, pet2.description));
 
 		return pets;
 

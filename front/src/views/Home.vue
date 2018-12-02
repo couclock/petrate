@@ -141,4 +141,7 @@ h2.md-accent {
 .debug {
   margin-top: 50px;
 }
+.md-card {
+  border: black solid 5px;
+}
 </style>

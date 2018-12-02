@@ -114,3 +114,5 @@ After a while, you will see a new backend hostname in above console => no failur
 ```
 kubectl scale deployments/front --replicas=2
 ```
+
+Refresh web interafce to see 2 differents hostname both for front and back
