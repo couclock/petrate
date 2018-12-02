@@ -20,7 +20,7 @@ spec:
     matchLabels:
       app: front
   strategy:
-    type: Recreate
+    type: RollingUpdate
   template:
     metadata:
       labels:
@@ -30,6 +30,11 @@ spec:
         - image: couclock/petrate_front:v1
           name: front
           readinessProbe:
+            httpGet:
+              path: /
+              port: 80
+            initialDelaySeconds: 10
+          livenessProbe:
             httpGet:
               path: /
               port: 80

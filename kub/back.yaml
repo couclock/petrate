@@ -20,7 +20,7 @@ spec:
     matchLabels:
       app: back
   strategy:
-    type: Recreate
+    type: RollingUpdate
   template:
     metadata:
       labels:
@@ -36,3 +36,4 @@ spec:
             httpGet:
               path: /actuator/health
               port: 8080
+            initialDelaySeconds: 30

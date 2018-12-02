@@ -114,3 +114,42 @@ After a while, you will see a new backend hostname in above console => no failur
 ```
 kubectl scale deployments/front --replicas=2
 ```
+
+Refresh web interafce to see 2 differents hostnames both for front and back
+
+#### Rolling update
+
+Show how to update running containers without any client-side failure
+
+- Switch to new git branch
+
+```
+git checkout minikube_rolling_update
+```
+
+- Build new docker images : v2
+
+```
+docker-compose build
+```
+
+- Ensure we have 2 pods executing for front and back (with kubernetes dashboard or "kubectl get pods" command)
+- Update front image :
+
+```
+kubectl set image deployments/front front=couclock/petrate_front:v2
+```
+
+- Check that website is always up and ends with new release (red borders around pet images)
+
+- Update back image :
+
+```
+kubectl set image deployments/back front=couclock/petrate_back:v2
+```
+
+- Check that website is always up and ends with new release (pet name prefix : Name)
+
+```
+kubectl set image deployments/back back=couclock/petrate_back:v2
+```
