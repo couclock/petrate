@@ -154,8 +154,15 @@ kubectl set image deployments/back front=couclock/petrate_back:v2
 ### With remote Kubernetes (on AWS - EKS)
 
 - Explain why
+
+Use your AWS account (or create one) and create an Access Key (Go AWS console > IAM > Users > Pick a user > Security credentials > Create access key). Check selected region is compatible with EKS.
+
 - Explain Terraform
-- Install AWS CLI : https://aws.amazon.com/cli/
+- Install AWS CLI : https://aws.amazon.com/cli/ and configure it with created Access Key :
+```
+aws configure
+```
+
 - Install terraform : https://www.terraform.io/downloads.html
 - Fllowing instructions are based on https://www.terraform.io/docs/providers/aws/guides/eks-getting-started.html 
 - Switch to dedicated git branch
@@ -171,10 +178,9 @@ provider "aws" {
   region     = "eu-west-1"
 }
 ```
-Use your AWS account (or create one) and create an Access Key (Go AWS console > IAM > Users > Pick a user > Security credentials > Create access key).
-Check selected region is compatible with EKS.
 - Go to terraform dir and init terraform tool
 ```
+cd terraform
 terraform init
 ```
 - Initialize all infrastructure stuffs :
@@ -190,3 +196,28 @@ terraform destroy
 aws eks update-kubeconfig --name terraform-eks-demo
 ```
 
+#### Install Kubernetes dashboard
+
+Cf https://docs.aws.amazon.com/fr_fr/eks/latest/userguide/dashboard-tutorial.html
+
+- Install dashboard
+```
+kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/master/src/deploy/recommended/kubernetes-dashboard.yaml
+kubectl apply -f https://raw.githubusercontent.com/kubernetes/heapster/master/deploy/kube-config/influxdb/heapster.yaml
+kubectl apply -f https://raw.githubusercontent.com/kubernetes/heapster/master/deploy/kube-config/influxdb/influxdb.yaml
+kubectl apply -f https://raw.githubusercontent.com/kubernetes/heapster/master/deploy/kube-config/rbac/heapster-rbac.yaml
+```
+- Create user account eks-admin
+```
+kubectl apply -f ../kub/eks-admin-service-account.yaml
+kubectl apply -f ../kub/eks-admin-cluster-role-binding.yaml
+```
+- Get authentication token resulting from
+```
+kubectl -n kube-system describe secret $(kubectl -n kube-system get secret | grep eks-admin | awk '{print $1}')
+```
+- Start kubectl proxy :
+```
+kubectl proxy
+```
+- Navigate to http://localhost:8001/api/v1/namespaces/kube-system/services/https:kubernetes-dashboard:/proxy/ ans authenticate using token.
