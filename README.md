@@ -182,8 +182,8 @@ git checkout AWS_EKS
 - Add a file secret.tf inside terraform directory containing :
 ```
 provider "aws" {
-  access_key = "AKIAIBLDZVH42WGAQCAA"
-  secret_key = "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"
+  access_key = "AKxxx"
+  secret_key = "eZqqq"
   region     = "eu-west-1"
 }
 ```
