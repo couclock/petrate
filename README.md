@@ -67,10 +67,8 @@ minikube start && eval $(minikube docker-env)
 - Launch Kubernetes dashboard
 
 ```
-kubectl proxy &
+kubectl proxy & minikube dashboard &
 ```
-
-Navigate to http://127.0.0.1:8001/api/v1/namespaces/kube-system/services/http:kubernetes-dashboard:/proxy/
 
 - Build docker images (and wait a moment) to get built images inside minikube env
 
@@ -93,4 +91,26 @@ kubectl create -f kub/front.yaml
 minikube service front
 ```
 
-- On the bottom on the page, see the hostname of both front and back are switching between 2 replicas.
+- On the bottom on the page, see the hostname of both front and back.
+
+#### Scale up
+
+- Get backend hostname displayed in a terminal :
+
+```
+while [ 1 ]; do curl "$(minikube service front --url)/pets/"; echo; sleep 0.1; done
+```
+
+- Scale up (add one backend container instance)
+
+```
+kubectl scale deployments/back --replicas=2
+```
+
+After a while, you will see a new backend hostname in above console => no failure during scale up
+
+- Scale up front containers
+
+```
+kubectl scale deployments/front --replicas=2
+```

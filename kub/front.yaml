@@ -8,14 +8,14 @@ spec:
   selector:
     app: front
   type: NodePort
-  sessionAffinity : None
+  sessionAffinity: None
 ---
 apiVersion: apps/v1 # for versions before 1.9.0 use apps/v1beta2
 kind: Deployment
 metadata:
   name: front
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: front
@@ -29,10 +29,10 @@ spec:
       containers:
         - image: couclock/petrate_front:v1
           name: front
-          env:
-            - name: TARGET_ENV
-              value: prod
-          ports:
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 80
           ports:
             - containerPort: 80
               name: front
