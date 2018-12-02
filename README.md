@@ -1,5 +1,8 @@
 # PetRate
 
+[First local run](#first-local-run) 
+[Local run using Docker](#local-run-using-docker) 
+
 ## First local run
 
 - Clone project
