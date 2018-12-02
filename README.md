@@ -154,9 +154,33 @@ kubectl set image deployments/back front=couclock/petrate_back:v2
 
 - Explain why
 - Explain Terraform
+- Install terraform : https://www.terraform.io/downloads.html
 - Switch to dedicated git branch
 
 ```
 git checkout AWS_EKS
 ```
+- Add a file secret.tf inside terraform directory containing :
+```
+provider "aws" {
+  access_key = "AKIAIBLDZVH42WGAQCAA"
+  secret_key = "eZh0Z6RqswEY1gAipjOVY0F6zfo/so10egqO7Pa8"
+  region     = "eu-west-1"
+}
+```
+Use your AWS account (or create one) and create an Access Key (Go AWS console > IAM > Users > Pick a user > Security credentials > Create access key).
+Check selected region is compatible with EKS.
+- Go to terraform dir and init terraform tool
+```
+terraform init
+```
+- Initialize all infrastructure stuffs :
+```
+terraform apply
+```
+It will take about 10min to bootstrap ... Some of created services will be charged. Do not forget to delete them after that tutorial :
+```
+terraform destroy
+```
+
 
