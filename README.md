@@ -57,7 +57,8 @@ docker-compose up
 ### With local Kubernetes (Minikube)
 
 - Explain why docker orchestrator (Cf https://fr.slideshare.net/cfurmaniak/gdg-lilleintrotokubernetes)
-- Install Minikube (https://kubernetes.io/docs/tasks/tools/install-minikube/)
+- Install Minikube : https://kubernetes.io/docs/tasks/tools/install-minikube/
+- Install kubectl (to manage your Kubernetes cluster) : https://kubernetes.io/docs/tasks/tools/install-kubectl/
 - Launch minikube and set right docker environnement settings (to use minikube docker instance)
 
 ```
@@ -154,7 +155,9 @@ kubectl set image deployments/back front=couclock/petrate_back:v2
 
 - Explain why
 - Explain Terraform
+- Install AWS CLI : https://aws.amazon.com/cli/
 - Install terraform : https://www.terraform.io/downloads.html
+- Fllowing instructions are based on https://www.terraform.io/docs/providers/aws/guides/eks-getting-started.html 
 - Switch to dedicated git branch
 
 ```
@@ -182,5 +185,8 @@ It will take about 10min to bootstrap ... Some of created services will be charg
 ```
 terraform destroy
 ```
-
+- Configure kubectl to manage remote Kubernetes cluster :
+```
+aws eks update-kubeconfig --name terraform-eks-demo
+```
 
