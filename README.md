@@ -4,7 +4,11 @@
 * [Local run using Docker](#local-run-using-docker) 
   * [With dockerfile and docker-compose](#with-dockerfile-and-docker-compose) 
   * [With local Kubernetes (Minikube)](#with-local-kubernetes-minikube)
-
+    * [Scale up](#scale-up)
+    * [Rolling update](#rolling-update)
+* [Remote run on AWS-EKS (Kubernetes)](#remote-run-on-aws-eks-kubernetes) 
+  * [Install Kubernetes dashboard](#install-kubernetes-dashboard)
+  
 ## First local run
 
 - Clone project
@@ -156,7 +160,7 @@ kubectl set image deployments/back front=couclock/petrate_back:v2
 
 - Check that website is always up and ends with new release (pet name prefix : Name)
 
-### With remote Kubernetes (on AWS - EKS)
+## Remote run on AWS-EKS (Kubernetes)
 
 - Explain why
 
@@ -201,7 +205,7 @@ terraform destroy
 aws eks update-kubeconfig --name terraform-eks-demo
 ```
 
-#### Install Kubernetes dashboard
+### Install Kubernetes dashboard
 
 Cf https://docs.aws.amazon.com/fr_fr/eks/latest/userguide/dashboard-tutorial.html
 
