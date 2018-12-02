@@ -121,7 +121,7 @@ Refresh web interafce to see 2 differents hostnames both for front and back
 
 Show how to update running containers without any client-side failure
 
-- Switch to new git branch
+- Switch to new git branch to get new features
 
 ```
 git checkout minikube_rolling_update
@@ -133,7 +133,7 @@ git checkout minikube_rolling_update
 docker-compose build
 ```
 
-- Ensure we have 2 pods executing for front and back (with kubernetes dashboard or "kubectl get pods" command)
+- Ensure we kept 2 pods running for front and back (with kubernetes dashboard or "kubectl get pods" command)
 - Update front image :
 
 ```
@@ -149,7 +149,3 @@ kubectl set image deployments/back front=couclock/petrate_back:v2
 ```
 
 - Check that website is always up and ends with new release (pet name prefix : Name)
-
-```
-kubectl set image deployments/back back=couclock/petrate_back:v2
-```
