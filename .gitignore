@@ -6,6 +6,8 @@ target
 .mvn
 .project
 .settings
+terraform/
+istio-*
 
 tests/e2e/videos/
 tests/e2e/screenshots/
