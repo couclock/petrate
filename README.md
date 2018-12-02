@@ -1,7 +1,9 @@
 # PetRate
 
-[First local run](#first-local-run) 
-[Local run using Docker](#local-run-using-docker) 
+* [First local run](#first-local-run) 
+* [Local run using Docker](#local-run-using-docker) 
+  * [With dockerfile and docker-compose](#with-dockerfile-and-docker-compose) 
+  * [With local Kubernetes (Minikube)](#with-local-kubernetes-minikube)
 
 ## First local run
 
