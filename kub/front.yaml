@@ -8,12 +8,14 @@ spec:
   selector:
     app: front
   type: NodePort
+  sessionAffinity : None
 ---
 apiVersion: apps/v1 # for versions before 1.9.0 use apps/v1beta2
 kind: Deployment
 metadata:
   name: front
 spec:
+  replicas: 2
   selector:
     matchLabels:
       app: front

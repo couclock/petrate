@@ -2,6 +2,8 @@ package com.couclock.petrate.rest;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
@@ -28,6 +30,13 @@ public class PetController {
 
 	@Autowired
 	private PetRepository petRepository;
+
+	@GetMapping
+	public String get() throws UnknownHostException {
+
+		return InetAddress.getLocalHost().getHostName();
+
+	}
 
 	@GetMapping("/{petId}/image")
 	public ResponseEntity<Resource> getImage(@PathVariable(value = "petId") long petId) throws IOException {

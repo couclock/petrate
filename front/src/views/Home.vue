@@ -1,5 +1,5 @@
 <template>
-  <div class="home">
+  <div class="home ">
     <h1>Which of my pets do you prefer ?</h1>
 
     <div class="md-layout md-gutter md-alignment-top-center"
@@ -53,6 +53,15 @@
       </h2>
     </div>
 
+    <div class="md-layout md-gutter md-alignment-top-center debug">
+
+      <div class="md-layout-item md-size-100 md-caption"
+           v-if="frontHostName">Front hostname : {{frontHostName}}</div>
+      <div class="md-layout-item md-size-100 md-caption"
+           v-if="backHostName">Back hostname : {{backHostName}}
+      </div>
+    </div>
+
     <md-dialog :md-active.sync="showAlert">
       <md-dialog-title>Thanks for your vote !</md-dialog-title>
 
@@ -69,20 +78,22 @@
 
 <script>
 // @ is an alias to /src
-import { HTTP, baseURL } from '@/http-constants';
+import { HTTP, baseURL } from "@/http-constants";
 
 export default {
-  name: 'home',
+  name: "home",
   data() {
     return {
       pets: [],
       error: false,
-      showAlert: false
+      showAlert: false,
+      frontHostName: undefined,
+      backHostName: undefined
     };
   },
   methods: {
     getImageUrl: function(petId) {
-      return baseURL + 'pets/' + petId + '/image';
+      return baseURL + "pets/" + petId + "/image";
     },
     vote: function() {
       this.showAlert = true;
@@ -95,14 +106,20 @@ export default {
       this.initPets();
     },
     initPets: function() {
-      HTTP.get('/pets/rnd2')
+      HTTP.get("/pets/rnd2")
         .then(response => {
+          console.log("reponse : ", response);
           this.pets = response.data;
         })
         .catch(response => {
-          console.error('ERROR : ', response);
+          console.error("ERROR : ", response);
           this.error = true;
         });
+      HTTP.get("/pets/").then(response => {
+        console.log("headers ? ", response.headers);
+        this.backHostName = response.data;
+        this.frontHostName = response.headers["x-petrate-front"];
+      });
     }
   },
   created() {
@@ -120,5 +137,8 @@ img {
 }
 h2.md-accent {
   color: red;
+}
+.debug {
+  margin-top: 50px;
 }
 </style>
