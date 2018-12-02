@@ -1,5 +1,5 @@
 <template>
-  <div class="home ">
+  <div class="home">
     <h1>Which of my pets do you prefer ?</h1>
 
     <div class="md-layout md-gutter md-alignment-top-center"
