@@ -11,6 +11,7 @@ terraform/secret.tf
 terraform/terraform.tfstate
 terraform/terraform.tfstate.backup
 terraform/config_map_aws_auth.yaml
+istio-*
 
 tests/e2e/videos/
 tests/e2e/screenshots/

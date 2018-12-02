@@ -14,11 +14,12 @@ kind: Deployment
 metadata:
   name: back
 spec:
+  replicas: 1
   selector:
     matchLabels:
       app: back
   strategy:
-    type: Recreate
+    type: RollingUpdate
   template:
     metadata:
       labels:
@@ -30,3 +31,8 @@ spec:
           ports:
             - containerPort: 8080
               name: back
+          readinessProbe:
+            httpGet:
+              path: /actuator/health
+              port: 8080
+            initialDelaySeconds: 30

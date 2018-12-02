@@ -8,12 +8,16 @@ resource "kubernetes_deployment" "back" {
   }
 
   spec {
-    replicas = 2
+    replicas = 1
 
     selector {
       match_labels {
         app = "back"
       }
+    }
+
+    strategy {
+      type = "RollingUpdate"
     }
 
     template {
@@ -28,9 +32,18 @@ resource "kubernetes_deployment" "back" {
           image = "082895264261.dkr.ecr.eu-west-1.amazonaws.com/terraform-eks-demo-back:v1"
           name  = "back"
 
-          port = {
+          port {
             container_port = 8080
             name           = "back"
+          }
+
+          readiness_probe {
+            initial_delay_seconds = 30
+
+            http_get {
+              path = "/actuator/health"
+              port = 8080
+            }
           }
         }
       }

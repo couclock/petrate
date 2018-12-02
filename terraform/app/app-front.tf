@@ -8,12 +8,16 @@ resource "kubernetes_deployment" "front" {
   }
 
   spec {
-    replicas = 2
+    replicas = 1
 
     selector {
       match_labels {
         app = "front"
       }
+    }
+
+    strategy {
+      type = "RollingUpdate"
     }
 
     template {
@@ -25,12 +29,28 @@ resource "kubernetes_deployment" "front" {
 
       spec {
         container {
-          image = "082895264261.dkr.ecr.eu-west-1.amazonaws.com/terraform-eks-demo-front:v2"
+          image = "082895264261.dkr.ecr.eu-west-1.amazonaws.com/terraform-eks-demo-front:v1"
           name  = "front"
 
           port = {
             container_port = 80
             name           = "front"
+          }
+
+          readiness_probe {
+            initial_delay_seconds = 10
+
+            http_get {
+              path = "/"
+              port = 80
+            }
+          }
+
+          liveness_probe {
+            http_get {
+              path = "/"
+              port = 80
+            }
           }
         }
       }
