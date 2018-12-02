@@ -149,3 +149,14 @@ kubectl set image deployments/back front=couclock/petrate_back:v2
 ```
 
 - Check that website is always up and ends with new release (pet name prefix : Name)
+
+### With remote Kubernetes (on AWS - EKS)
+
+- Explain why
+- Explain Terraform
+- Switch to dedicated git branch
+
+```
+git checkout AWS_EKS
+```
+
