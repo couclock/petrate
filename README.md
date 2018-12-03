@@ -178,9 +178,10 @@ aws configure
 ```
 
 - Install terraform : https://www.terraform.io/downloads.html
-- Fllowing instructions are based on https://www.terraform.io/docs/providers/aws/guides/eks-getting-started.html 
-- Switch to dedicated git branch
 
+Following instructions are based on https://www.terraform.io/docs/providers/aws/guides/eks-getting-started.html 
+
+- Switch to dedicated git branch
 ```
 git checkout AWS_EKS
 ```
