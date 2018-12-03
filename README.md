@@ -9,6 +9,12 @@
 * [Remote run on AWS-EKS (Kubernetes)](#remote-run-on-aws-eks-kubernetes) 
   * [Install Kubernetes dashboard](#install-kubernetes-dashboard)
   
+Tools to install before beginning :
+
+- Git (https://git-scm.com/downloads)
+- Docker and docker-compose (https://docs.docker.com/install/)
+  
+  
 ## First local run
 
 - Clone project
@@ -42,7 +48,6 @@ npm install && npm run serve
 ## Local run using Docker
 
 - What is it ? Cf https://fr.slideshare.net/NicolasMuller/docker-yajug
-- Install Docker
 
 ### With dockerfile and docker-compose
 
