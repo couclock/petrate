@@ -12,6 +12,9 @@ terraform/terraform.tfstate
 terraform/terraform.tfstate.backup
 terraform/config_map_aws_auth.yaml
 istio-*
+terraform/.terraform.tfstate.lock.info
+terraform/terraform.tfstate.backup~Declare app pods with terraform
+terraform/terraform.tfstate~Declare app pods with terraform
 
 tests/e2e/videos/
 tests/e2e/screenshots/
