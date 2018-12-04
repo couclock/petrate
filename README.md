@@ -8,6 +8,7 @@
     * [Rolling update](#rolling-update)
 * [Remote run on AWS-EKS (Kubernetes)](#remote-run-on-aws-eks-kubernetes) 
   * [Install Kubernetes dashboard](#install-kubernetes-dashboard)
+  * [Create and push images](create-and-push-images)
   
 Tools to install before beginning :
 
@@ -265,3 +266,18 @@ $(aws ecr get-login --no-include-email --region eu-west-1)
 docker-compose build
 docker-compose push
 ```
+
+### Run app
+
+- Declare containers :
+```
+kubectl create -f kub/postgresql.yaml
+kubectl create -f kub/back.yaml
+kubectl create -f kub/front.yaml
+```
+- Get app url with Kubernetes console or using command :
+```
+kubectl get services
+```
+Navigate to that url (url pattern : axxxxx.eu-west-1.elb.amazonaws.com), you should get the app.
+
