@@ -236,8 +236,8 @@ kubectl apply -f https://raw.githubusercontent.com/kubernetes/heapster/master/de
 ```
 - Create user account eks-admin
 ```
-kubectl apply -f ../kub/eks-admin-service-account.yaml
-kubectl apply -f ../kub/eks-admin-cluster-role-binding.yaml
+kubectl apply -f eks-dashboard/eks-admin-service-account.yaml
+kubectl apply -f eks-dashboard/eks-admin-cluster-role-binding.yaml
 ```
 - Get authentication token resulting from
 ```
@@ -245,6 +245,14 @@ kubectl -n kube-system describe secret $(kubectl -n kube-system get secret | gre
 ```
 - Start kubectl proxy :
 ```
-kubectl proxy
+kubectl proxy &
 ```
 - Navigate to http://localhost:8001/api/v1/namespaces/kube-system/services/https:kubernetes-dashboard:/proxy/ ans authenticate using token.
+
+### Create and push images
+
+- Connect to AWS console and go to docker registry (ECR) : https://eu-west-1.console.aws.amazon.com/ecs/home?region=eu-west-1#/repositories
+- Click on "XXX-front" registry and get displayed URI
+- Open docker-compose.yaml inside Git projet and update front image path (before :v1)
+- On AWS console, click on "XXX-back" registry and get displayed URI
+- Open docker-compose.yaml inside Git projet and update back image path (before :v1)
