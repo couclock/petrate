@@ -256,3 +256,12 @@ kubectl proxy &
 - Open docker-compose.yaml inside Git projet and update front image path (before :v1)
 - On AWS console, click on "XXX-back" registry and get displayed URI
 - Open docker-compose.yaml inside Git projet and update back image path (before :v1)
+- Authnticate docker to AWS registry :
+```
+$(aws ecr get-login --no-include-email --region eu-west-1) 
+```
+- Build and push images : 
+```
+docker-compose build
+docker-compose push
+```
