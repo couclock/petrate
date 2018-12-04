@@ -9,6 +9,7 @@
 * [Remote run on AWS-EKS (Kubernetes)](#remote-run-on-aws-eks-kubernetes) 
   * [Install Kubernetes dashboard](#install-kubernetes-dashboard)
   * [Create and push images](create-and-push-images)
+  * [Run app](run-app)
   
 Tools to install before beginning :
 
