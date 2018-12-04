@@ -198,6 +198,7 @@ provider "aws" {
 cd terraform
 terraform init
 ```
+- Open terraform/eks-master.tf and update aws_security_group_rule resource with your external IP (see https://www.monip.xyz/ to get it)
 - Initialize all infrastructure stuffs :
 ```
 terraform apply
