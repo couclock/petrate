@@ -207,6 +207,11 @@ It will take about 10min to bootstrap ... Some of created services will be charg
 ```
 terraform destroy
 ```
+- Configure kubectl to manage remote Kubernetes cluster :
+```
+aws eks update-kubeconfig --name terraform-eks-demo
+```
+
 - Connect worker nodes to mastre : 
 ```
 terraform output config_map_aws_auth > config_map_aws_auth.yaml
@@ -217,10 +222,6 @@ kubectl apply -f config_map_aws_auth.yaml
 kubectl get nodes --watch
 ```
 
-- Configure kubectl to manage remote Kubernetes cluster :
-```
-aws eks update-kubeconfig --name terraform-eks-demo
-```
 
 ### Install Kubernetes dashboard
 
