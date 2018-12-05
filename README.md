@@ -8,8 +8,9 @@
     * [Rolling update](#rolling-update)
 * [Remote run on AWS-EKS (Kubernetes)](#remote-run-on-aws-eks-kubernetes) 
   * [Install Kubernetes dashboard](#install-kubernetes-dashboard)
-  * [Create and push images](create-and-push-images)
-  * [Run app](run-app)
+  * [Create and push images](#create-and-push-images)
+  * [Run app](#run-app)
+* [Install Istio on EKS](#install-istio-on-eks)
   
 Tools to install before beginning :
 
@@ -284,3 +285,6 @@ kubectl get services
 ```
 Navigate to that url (url pattern : axxxxx.eu-west-1.elb.amazonaws.com), you should get the app.
 
+## Install Istio on EKS
+
+Cf https://aws.amazon.com/fr/blogs/opensource/getting-started-istio-eks/
