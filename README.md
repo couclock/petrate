@@ -209,6 +209,8 @@ It will take about 10min to bootstrap ... Some of created services will be charg
 ```
 terraform destroy
 ```
+If you get error destroying network related stuff (vpc, subnet, internet_gateway ...), go to AWS console and delete manually your LoadBalancer (https://eu-west-1.console.aws.amazon.com/ec2/v2/home?region=eu-west-1#LoadBalancers:sort=loadBalancerName). Then restart the destroy command.
+
 - Configure kubectl to manage remote Kubernetes cluster :
 ```
 aws eks update-kubeconfig --name terraform-eks-demo
