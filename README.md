@@ -196,6 +196,7 @@ provider "aws" {
   region     = "eu-west-1"
 }
 ```
+- Update terraform/variables.tf with your own cluster-name
 - Go to terraform dir and init terraform tool
 ```
 cd terraform
