@@ -316,4 +316,80 @@ Navigate to that url (url pattern : axxxxx.eu-west-1.elb.amazonaws.com), you sho
 
 ## Install Istio on EKS
 
-Cf https://aws.amazon.com/fr/blogs/opensource/getting-started-istio-eks/
+Folowing statements are based on the sample "Bookinfo" provided by Istio itself : https://aws.amazon.com/fr/blogs/opensource/getting-started-istio-eks. 
+
+### Install and Configure Istio
+
+ - Requirements :
+ 
+ Make sure that you already have a EKS cluster. If you don’t yet have one, there are various ways to provision one,
+ including eksctl, AWS Console, or Terraform.
+                                                              
+ 
+ 
+
+ - Download the latest Istio version :
+```
+curl -L https://git.io/getLatestIstio | sh -
+cd istio-1.*
+kubectl create -f install/kubernetes/helm/helm-service-account.yaml
+helm init --service-account tiller
+```
+
+ - Install and configure Helm:
+```
+kubectl create -f install/kubernetes/helm/helm-service-account.yaml
+helm init --service-account tiller
+```
+
+- Install Istio:
+```
+helm install \
+	--wait \
+	--name istio \
+	--namespace istio-system \
+	install/kubernetes/helm/istio \
+	--set tracing.enabled=true \
+	--set kiali.enabled=true \
+	--set grafana.enabled=true
+	
+kubectl label namespace default istio-injection=enabled
+
+```
+
+- Install Bookinfo 
+```
+kubectl apply -f \
+<(istioctl kube-inject -f samples/bookinfo/platform/kube/bookinfo.yaml)
+```
+
+- Expose Bookinfo
+```
+kubectl apply -f samples/bookinfo/networking/bookinfo-gateway.yaml
+$ export INGRESS_HOST=$(kubectl -n istio-system \
+get service istio-ingressgateway \
+-o jsonpath='{.status.loadBalancer.ingress[0].hostname}')
+$ export INGRESS_PORT=$(kubectl -n istio-system \
+get service istio-ingressgateway \
+-o jsonpath='{.spec.ports[?(@.name=="http2")].port}')
+$ export GATEWAY_URL=$INGRESS_HOST:$INGRESS_PORT
+```
+
+Then, you are able to access Bookinfo on ```http://$GATEWAY_URL/productpage```. 
+
+### Play with Istio 
+
+Istio provides a number of key capabilities uniformly across a network of services like Kubernetes : 
+
+- Traffic management (ex : traffic shifting, securing gateways with HTTPS, circuit breaking)
+
+- Security (authorization, authentication policy, health checking)
+
+- Policies (rate limits, white/black listing)
+
+- Telemetry (colleting logs and metrics, metrics visualization, distributed tracing)
+
+
+Many examples based on Bookinfo are available here : https://istio.io/docs/.
+
+### Istio with petrate (TODO)  
